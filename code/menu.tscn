@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://das3003lophdg"]
+
+[ext_resource type="Script" uid="uid://b110w2quxe2py" path="res://code/menu.gd" id="1_741in"]
+[ext_resource type="Texture2D" uid="uid://bf0p0rjs3oi10" path="res://images/title.png" id="1_ygej5"]
+[ext_resource type="Texture2D" uid="uid://ighuwhccooq0" path="res://images/butt.png" id="2_741in"]
+[ext_resource type="AudioStream" uid="uid://bpk7cwexs3t76" path="res://sound/398941__enviromaniac2__happyloop.wav" id="3_5xgwv"]
+[ext_resource type="Texture2D" uid="uid://dc3gcko5r3c1j" path="res://images/butt2.png" id="3_iafwh"]
+
+[sub_resource type="Animation" id="Animation_ygej5"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0.09, 0.015300002, 0.015300002, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_741in"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iafwh"]
+_data = {
+&"RESET": SubResource("Animation_741in"),
+&"fade": SubResource("Animation_ygej5")
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_741in")
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ygej5")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5xgwv")
+volume_db = -27.67
+autoplay = true
+
+[node name="continue" type="TextureButton" parent="."]
+offset_left = 286.0
+offset_top = 430.0
+offset_right = 373.0
+offset_bottom = 509.0
+texture_normal = ExtResource("2_741in")
+texture_pressed = ExtResource("2_741in")
+texture_hover = ExtResource("3_iafwh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 657.0
+offset_bottom = 609.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iafwh")
+}
+
+[connection signal="pressed" from="continue" to="." method="_on_continue_pressed"]

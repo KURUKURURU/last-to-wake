@@ -5,6 +5,9 @@ var move
 @onready var bubble = $CanvasLayer/Bubble
 @onready var ding = $ding
 @onready var timer = $CanvasLayer/Timer
+@onready var credits = $CanvasLayer/creds/scroll
+@onready var cred = $CanvasLayer/creds
+@onready var cMusic = $credieiiwseadf
 
 @onready var fadeColor = $CanvasLayer/color
 @onready var fadeAnimation = $CanvasLayer/animation
@@ -28,10 +31,11 @@ func _ready() -> void:
 	#timer.countdown("Bedtime in ", 60)
 	await $music.finished
 	p.moving = false
+	credit()
 
 func _process(delta: float) -> void:
 	_interact(InterestingHammyIcon, InterestingHammy, pA, "Interesting Hammy", "Can't believe we lost Zoe...")
-	_interact(ScaryHammyIcon, ScaryHammy, pA, "Scared Hammy", "I'm was Scary Hammy, now I'm Scared Hammy.")
+	_interact(ScaryHammyIcon, ScaryHammy, pA, "Scared Hammy", "I was Scary Hammy, now I'm Scared Hammy.")
 	_interact(HeadHammyIcon, HeadHammy, pA, "Head Hammy", "I'm currently being investigated by the police, lol. Y'all should probably not come next year.")
 	_interact(ZoeIcon, Zoe, pA, "Corner-dwelling Yanella", "found jadyn, she was eating my peanut artichoke pie. I slimed her.")
 	
@@ -60,3 +64,6 @@ func timerEnd():
 	
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
+func credit():
+	credits.play("scroll")
+	cMusic.play()

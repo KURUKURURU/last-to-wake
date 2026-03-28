@@ -4,10 +4,10 @@
 [ext_resource type="SpriteFrames" uid="uid://dlpugoikdfa6v" path="res://images/creaturehorizontal.tres" id="2_f0ol2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib8fr"]
-size = Vector2(331.75, 40.3125)
+size = Vector2(73.875, 40.3125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5x1r"]
-size = Vector2(60, 388)
+size = Vector2(60, 98)
 
 [node name="creature" type="Node2D"]
 
@@ -16,11 +16,12 @@ visible = false
 sprite_frames = ExtResource("2_f0ol2")
 animation = &"walk"
 autoplay = "walk"
+frame_progress = 0.37043324
 
 [node name="Area2D" type="Area2D" parent="up_down"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up_down/Area2D"]
-position = Vector2(-5, -1.15625)
+position = Vector2(21, -7)
 shape = SubResource("RectangleShape2D_ib8fr")
 
 [node name="right_left" type="AnimatedSprite2D" parent="."]
@@ -28,9 +29,10 @@ visible = false
 sprite_frames = ExtResource("1_8l8ln")
 animation = &"walk"
 autoplay = "walk"
+frame_progress = 0.7289915
 
 [node name="Area2D" type="Area2D" parent="right_left"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right_left/Area2D"]
-position = Vector2(4, 22)
+position = Vector2(4, 14)
 shape = SubResource("RectangleShape2D_n5x1r")

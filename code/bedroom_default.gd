@@ -25,7 +25,7 @@ var move
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await box("You", "I don't feel like being here.....")
-	await box("You", "Not after what happened last year.")
+	await box("You", "I think I'm going to be sick.")
 	timer.countdown("Bedtime in ", 60)
 
 func _process(delta: float) -> void:

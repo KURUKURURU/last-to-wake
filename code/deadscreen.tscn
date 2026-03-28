@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bacustvqgw5y2"]
+[gd_scene load_steps=3 format=3 uid="uid://bacustvqgw5y2"]
+
+[ext_resource type="Texture2D" uid="uid://tyxhoow3nupu" path="res://images/died.jpg" id="1_c2dbn"]
+[ext_resource type="AudioStream" uid="uid://b4fnyjqby8kxc" path="res://sound/759458__akridiy__a-single-scream-of-a-young-male.wav" id="2_83ql5"]
 
 [node name="deadscreen" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -224.99998
+offset_right = 775.0
+offset_bottom = 563.0
+scale = Vector2(1.0836713, 1.0836713)
+texture = ExtResource("1_c2dbn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_83ql5")
+autoplay = true

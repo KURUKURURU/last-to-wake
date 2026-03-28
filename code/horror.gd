@@ -7,6 +7,7 @@ var health = 3
 var X 
 var Y 
 var open = true
+var rounds = 0
 
 @onready var left = $CanvasLayer/left
 @onready var right = $CanvasLayer/right
@@ -50,6 +51,7 @@ var open = true
 @onready var _1hearts1 = preload("res://images/1.png")
 
 func _ready() -> void:
+	$CanvasLayer/text.text = "Minutes until sunrise: " + "10"
 	playing = false
 	p.moving = false
 	info.hide()
@@ -84,10 +86,12 @@ func _process(delta: float) -> void:
 			health = health - 1
 			hurt.play()
 			
-		elif health == 0:
+		elif health == 1:
 			hurt.play()
+			await hurt.finished
 			get_tree().change_scene_to_file("res://code/deadscreen.tscn")
-			
+		
+		await wait(0.5)
 		open = true
 			
 func play():
@@ -123,6 +127,15 @@ func play():
 			await wait(0.40)
 			
 			await creatureCrawl(check)
+			rounds +=1
+			$CanvasLayer/text.text = "Minutes until sunrise: " + str(10-rounds)
+			
+			if rounds == 10:
+				break
+				
+		fadeAnimation.play("fade")
+		await fadeAnimation.animation_finished
+		get_tree().change_scene_to_file("res://code/ALIVE.tscn")
 			
 			
 func creatureCrawl(check):
