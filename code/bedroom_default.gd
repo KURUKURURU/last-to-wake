@@ -7,6 +7,7 @@ var move
 @onready var timer = $CanvasLayer/Timer
 
 @onready var fadeColor = $CanvasLayer/color
+@onready var fadeAnimation = $CanvasLayer/animation
 
 
 @onready var ScaryHammy = $ScaryHammy/Area2D
@@ -49,3 +50,12 @@ func _interact(iconPath, randomArea, playerArea, name, message):
 			iconPath.hide()
 
 #"Scary Hammy", "I'm Scary Hammy. But I'm still lowkirkenuliy chill.")
+
+func timerEnd():
+	fadeAnimation.play("fade")
+	await fadeAnimation.animation_finished
+	await wait(2.0)
+	get_tree().change_scene_to_file("res://code/bedroom_ceremony.tscn")
+	
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
