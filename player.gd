@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var animation = $animation
 
-var speed = 500 
+@export var speed = 500 
 var moving = true
 #
 #func _process(delta: float) -> void:

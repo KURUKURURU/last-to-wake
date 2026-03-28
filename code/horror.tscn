@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://b15bg5pjvr8d6"]
+[gd_scene load_steps=37 format=4 uid="uid://b15bg5pjvr8d6"]
 
 [ext_resource type="Script" uid="uid://c3t21nyps0e52" path="res://code/horror.gd" id="1_h4v88"]
 [ext_resource type="Texture2D" uid="uid://c0v1e2gnbc7ew" path="res://images/carpet.png" id="2_cnvp6"]
@@ -15,11 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://dhmefw1gkyeom" path="res://images/cg2.png" id="11_a3upt"]
 [ext_resource type="PackedScene" uid="uid://bpq0xkauhs64k" path="res://code/info_screen.tscn" id="12_2hb5r"]
 [ext_resource type="PackedScene" uid="uid://dc3lkdg6a7ckd" path="res://code/timer.tscn" id="12_b8owe"]
+[ext_resource type="AudioStream" uid="uid://guuor7qpixs5" path="res://sound/341681__jeremysykes__hurt04.wav" id="13_a3upt"]
 [ext_resource type="PackedScene" uid="uid://4htk2khki77a" path="res://code/bubble.tscn" id="13_n4c4q"]
 [ext_resource type="Texture2D" uid="uid://qbvsmgwdewg2" path="res://images/vignette.png" id="14_cnvp6"]
 [ext_resource type="AudioStream" uid="uid://ccetnrirjefgu" path="res://sound/left.mp3" id="18_ruge0"]
 [ext_resource type="AudioStream" uid="uid://ck1ygd85g5ipp" path="res://sound/right.mp3" id="19_qxi2a"]
 [ext_resource type="AudioStream" uid="uid://12lak5m6iwsj" path="res://sound/up.mp3" id="20_a3upt"]
+[ext_resource type="Texture2D" uid="uid://bcqxsavb0qyny" path="res://images/3_1.png" id="20_b8owe"]
 [ext_resource type="AudioStream" uid="uid://crk1rrpr5sh08" path="res://sound/down.mp3" id="21_b8owe"]
 [ext_resource type="PackedScene" uid="uid://dw4hqlk2osveb" path="res://code/creature.tscn" id="22_qxi2a"]
 
@@ -44,6 +46,69 @@ sources/1 = SubResource("TileSetAtlasSource_6lf6g")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnvp6"]
 radius = 86.09297
+
+[sub_resource type="Animation" id="Animation_a3upt"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3602, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-765, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_b8owe"]
+resource_name = "horizontal"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(-765, -0.25, 0, 0.25, 0, 1424, -0.16666667, -364.83334, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_qxi2a"]
+resource_name = "vertical"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(3602, -0.25, 0, 0.25, 0, -444, -0.16666667, 674.3334, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8owe"]
+_data = {
+&"RESET": SubResource("Animation_a3upt"),
+&"horizontal": SubResource("Animation_b8owe"),
+&"vertical": SubResource("Animation_qxi2a")
+}
+
+[sub_resource type="Animation" id="Animation_7t4b3"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_wv4fj"]
 resource_name = "fade"
@@ -71,9 +136,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
-
-[sub_resource type="Animation" id="Animation_7t4b3"]
-length = 0.001
 
 [sub_resource type="Animation" id="Animation_4exmk"]
 resource_name = "fadein"
@@ -107,44 +169,6 @@ _data = {
 &"RESET": SubResource("Animation_7t4b3"),
 &"fade": SubResource("Animation_wv4fj"),
 &"fadein": SubResource("Animation_4exmk")
-}
-
-[sub_resource type="Animation" id="Animation_qxi2a"]
-resource_name = "vertical"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(3602, -0.25, 0, 0.25, 0, -444, -0.16666667, 674.3334, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_a3upt"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(3602, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_b8owe"]
-resource_name = "horizontal"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8owe"]
-_data = {
-&"RESET": SubResource("Animation_a3upt"),
-&"horizontal": SubResource("Animation_b8owe"),
-&"vertical": SubResource("Animation_qxi2a")
 }
 
 [node name="horror" type="Node2D"]
@@ -204,6 +228,7 @@ position = Vector2(-427, 3159)
 
 [node name="Player" parent="." instance=ExtResource("8_c1kns")]
 position = Vector2(139, 390)
+speed = 250
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-2, 2)
@@ -235,9 +260,22 @@ autoplay = true
 stream = ExtResource("10_qxi2a")
 volume_db = -8.587
 
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_a3upt")
+volume_db = -16.22
+
+[node name="creature" parent="." instance=ExtResource("22_qxi2a")]
+position = Vector2(-765, 3602)
+
+[node name="animation" type="AnimationPlayer" parent="creature"]
+libraries = {
+&"": SubResource("AnimationLibrary_b8owe")
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InfoScreen" parent="CanvasLayer" instance=ExtResource("12_2hb5r")]
+z_index = 1
 
 [node name="CG" type="TextureRect" parent="CanvasLayer"]
 visible = false
@@ -279,6 +317,11 @@ offset_bottom = 600.0
 mouse_filter = 2
 texture = ExtResource("14_cnvp6")
 
+[node name="health" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(0.57996243, 0.071089685, 0.044306915, 0.72156864)
+position = Vector2(325, 300)
+texture = ExtResource("20_b8owe")
+
 [node name="left" type="AudioStreamPlayer2D" parent="CanvasLayer"]
 position = Vector2(-7, 302)
 stream = ExtResource("18_ruge0")
@@ -298,13 +341,5 @@ volume_db = 6.058
 position = Vector2(329, 601)
 stream = ExtResource("21_b8owe")
 volume_db = 7.068
-
-[node name="creature" parent="CanvasLayer" instance=ExtResource("22_qxi2a")]
-position = Vector2(-765, 3602)
-
-[node name="animation" type="AnimationPlayer" parent="CanvasLayer/creature"]
-libraries = {
-&"": SubResource("AnimationLibrary_b8owe")
-}
 
 [connection signal="hi" from="CanvasLayer/InfoScreen" to="." method="_on_info_screen_hi"]

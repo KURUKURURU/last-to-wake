@@ -3,6 +3,10 @@ var move
 var playing
 var direction 
 var check
+var health = 3
+var X 
+var Y 
+var open = true
 
 @onready var left = $CanvasLayer/left
 @onready var right = $CanvasLayer/right
@@ -17,12 +21,16 @@ var check
 @onready var timer = $CanvasLayer/Timer
 @onready var info = $CanvasLayer/InfoScreen
 @onready var blanket = $blanket
+@onready var hurt = $hurt
 
 @onready var fadeColor = $CanvasLayer/color
 @onready var fadeAnimation = $CanvasLayer/animation
 
-@onready var creatureAnimation = $CanvasLayer/creature/animation
-@onready var creature = $CanvasLayer/creature
+@onready var creatureAnimation = $creature/animation
+@onready var creature = $creature
+@onready var creatureAreaV = $creature/up_down/Area2D
+@onready var creatureAreaH = $creature/right_left/Area2D
+@onready var healthImg = $CanvasLayer/health
 
 
 @onready var ScaryHammy = $ScaryHammy/Area2D
@@ -36,6 +44,11 @@ var check
 @onready var Zoe = $Zoe/Area2D
 @onready var ZoeIcon = $Zoe/icon
 
+@onready var _3hearts1 = preload("res://images/3_1.png")
+@onready var _3hearts2 = preload("res://images/3_2.png")
+@onready var _2hearts1 = preload("res://images/2h.png")
+@onready var _1hearts1 = preload("res://images/1.png")
+
 func _ready() -> void:
 	playing = false
 	p.moving = false
@@ -47,10 +60,36 @@ func _ready() -> void:
 	blanket.play()
 
 func _process(delta: float) -> void:
+	
+	if health == 3:
+		healthImg.texture = _3hearts1
+		await wait(0.2)
+		healthImg.texture = _3hearts2
+		await wait(0.2)
+	elif health == 2:
+		healthImg.texture = _2hearts1
+	elif health == 1:
+		healthImg.texture = _1hearts1
+	elif health == 0:
+		healthImg.texture = null
+	
 	_interact(PlayerIcon, CharlesPortrait, pA, "You", "What really happened to Charlie?")
 	_interact(ZoeIcon, Zoe, pA, "Corner-dwelling Yanella", "have you seen jadyn?")
 	_interact(HeadHammyIcon, HeadHammy, pA, "Head Hammy", "My sleepovers suck")
 	
+	if creatureAreaV.overlaps_area(pA) and open == true:
+		open = false
+		if health > 1:
+			
+			health = health - 1
+			hurt.play()
+			
+		elif health == 0:
+			hurt.play()
+			get_tree().change_scene_to_file("res://code/deadscreen.tscn")
+			
+		open = true
+			
 func play():
 	if playing:
 		for i in range(10): #missing 3 times kills you
@@ -78,36 +117,33 @@ func play():
 			
 			direction.play()
 			await direction.finished
-			await wait(1.0)
+			X = p.position.x
+			Y = p.position.y
+			
+			await wait(0.40)
 			
 			await creatureCrawl(check)
 			
-			#if check == left:
-				#
-			#elif check == right:
-				#
-			#elif check == up:
-				#
-			#elif check == down:
-				
 			
 func creatureCrawl(check):
 	
-	if check == left or check == right:
-		creature.position.x = p.position.x
+	if check == "left" or check == "right":
+		creature.position.x = X
 		creature.position.y = 3600
+		creature_horizontal()
 		
 		creatureAnimation.play("vertical")
 		await creatureAnimation.animation_finished
 		
 		
-	elif check == up or check == down:
+	elif check == "up" or check == "down":
 		creature.position.x = -760
-		creature.position.y = p.position.y
+		creature.position.y = Y
+		creature_vertical()
 		
-		creatureAnimation.play("vertical")
+		creatureAnimation.play("horizontal")
 		await creatureAnimation.animation_finished
-				
+	
 		
 	
 	
@@ -133,3 +169,11 @@ func _on_info_screen_hi() -> void:
 	p.moving = true
 	playing = true
 	play()
+
+func creature_vertical():
+	$creature/up_down.show()
+	$creature/right_left.hide()
+
+func creature_horizontal():
+	$creature/up_down.hide()
+	$creature/right_left.show()
