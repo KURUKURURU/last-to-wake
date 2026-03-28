@@ -1,0 +1,245 @@
+[gd_scene load_steps=12 format=3 uid="uid://4htk2khki77a"]
+
+[ext_resource type="Script" uid="uid://3cp6b0luiu0d" path="res://code/bubble.gd" id="1_kysdl"]
+[ext_resource type="Texture2D" uid="uid://cvfyglgisefgx" path="res://images/box.png" id="1_mddvq"]
+[ext_resource type="Texture2D" uid="uid://brhgiexigit0a" path="res://images/bubble.png" id="2_oqodk"]
+[ext_resource type="FontFile" uid="uid://qwcrgxp1t44r" path="res://fonts/fredoka-one/FredokaOne-Regular.otf" id="3_kysdl"]
+[ext_resource type="FontFile" uid="uid://cvg8cynm1bgxl" path="res://fonts/HazesSprayPaint.ttf" id="3_mddvq"]
+
+[sub_resource type="Animation" id="Animation_xbqve"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(469.845, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(523, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("message:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bubble:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39.999268, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bubble:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(524.01, 540.45)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bubble:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.28, 0.28)]
+}
+
+[sub_resource type="Animation" id="Animation_0gtg6"]
+resource_name = "pop"
+length = 0.2145
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39.999268, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(562, 523), Vector2(570.05, 540.45)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubble:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.28, 0.28)]
+}
+
+[sub_resource type="Animation" id="Animation_wldps"]
+resource_name = "slide"
+length = 0.609
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bubble:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(490, 0, 0, 0.101500005, 12, 562, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.609)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bubble:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(523, 0, 0, 0.101500005, 0, 523, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.609)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bubble:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a07is"]
+resource_name = "type"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("message:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlfg0"]
+_data = {
+&"RESET": SubResource("Animation_xbqve"),
+&"pop": SubResource("Animation_0gtg6"),
+&"slide": SubResource("Animation_wldps"),
+&"type": SubResource("Animation_a07is")
+}
+
+[sub_resource type="Theme" id="Theme_0gtg6"]
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("3_mddvq")
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource("1_kysdl")
+
+[node name="bubble" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 524.01
+offset_top = 540.45
+offset_right = 564.0093
+offset_bottom = 580.45
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_oqodk")
+
+[node name="img" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 47.0
+offset_top = 420.0
+offset_right = 604.0
+offset_bottom = 572.0
+pivot_offset = Vector2(260, 78)
+texture = ExtResource("1_mddvq")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tlfg0")
+}
+
+[node name="name" type="RichTextLabel" parent="."]
+offset_left = 97.0
+offset_top = 455.0
+offset_right = 542.0
+offset_bottom = 493.0
+scale = Vector2(1.0102425, 1.0102425)
+theme = SubResource("Theme_0gtg6")
+theme_override_colors/default_color = Color(0.63, 0.24569999, 0.24569999, 0.47843137)
+theme_override_fonts/normal_font = ExtResource("3_kysdl")
+theme_override_font_sizes/normal_font_size = 17
+text = "Silly Hamster"
+fit_content = true
+scroll_active = false
+
+[node name="message" type="RichTextLabel" parent="."]
+offset_left = 100.0
+offset_top = 475.00003
+offset_right = 485.0
+offset_bottom = 544.0
+theme_override_colors/default_color = Color(0.22, 0.030799996, 0.030799996, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.15294118)
+theme_override_fonts/normal_font = ExtResource("3_mddvq")
+theme_override_font_sizes/normal_font_size = 19
+text = "I don't usually let just ANYONE in my dome..."
+scroll_active = false
+vertical_alignment = 1
+
+[node name="click" type="TextureButton" parent="."]
+offset_right = 648.0
+offset_bottom = 599.0
+
+[connection signal="pressed" from="click" to="." method="_on_click_pressed"]

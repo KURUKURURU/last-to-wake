@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnbkyjxgyuf6c"]
+
+[ext_resource type="Texture2D" uid="uid://4fitw8nr6t8s" path="res://images/cg1.png" id="1_8j5wv"]
+[ext_resource type="Script" uid="uid://jpk5od88ptd5" path="res://code/start.gd" id="1_bcxh7"]
+[ext_resource type="PackedScene" uid="uid://4htk2khki77a" path="res://code/bubble.tscn" id="2_bcxh7"]
+[ext_resource type="AudioStream" uid="uid://dbhkwvgkyt43b" path="res://sound/bbc_car-parks-_07060052.mp3" id="4_n4rq1"]
+
+[sub_resource type="Animation" id="Animation_bcxh7"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("color:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n4rq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v6xx"]
+_data = {
+&"RESET": SubResource("Animation_n4rq1"),
+&"fade": SubResource("Animation_bcxh7")
+}
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_bcxh7")
+
+[node name="CG" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8j5wv")
+
+[node name="Bubble" parent="." instance=ExtResource("2_bcxh7")]
+
+[node name="color" type="ColorRect" parent="."]
+offset_right = 662.0
+offset_bottom = 616.0
+color = Color(0.17922792, 0.07595559, 0.2070519, 1)
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5v6xx")
+}
+
+[node name="car" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(315, 316)
+stream = ExtResource("4_n4rq1")
+autoplay = true

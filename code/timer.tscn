@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc3lkdg6a7ckd"]
+
+[ext_resource type="Script" uid="uid://dccpldxhyxykh" path="res://timer.gd" id="1_psab3"]
+[ext_resource type="FontFile" uid="uid://6q37irxse7cp" path="res://fonts/noot-regular.ttf" id="2_8un3p"]
+
+[node name="Timer" type="Node2D"]
+script = ExtResource("1_psab3")
+
+[node name="text" type="RichTextLabel" parent="."]
+offset_right = 344.0
+offset_bottom = 40.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_8un3p")
