@@ -17,6 +17,7 @@ func countdown(message, totalTime):
 		$text.text = message + str(time) + " seconds"
 		if time == 1:
 			emit_signal("alarm")
+			self.hide()
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout

@@ -57,6 +57,7 @@ self_modulate = Color(1.1374342, 0.8759209, 0.8892182, 1)
 texture_filter = 1
 position = Vector2(-5, -106)
 sprite_frames = SubResource("SpriteFrames_w5pbx")
+autoplay = "default"
 frame_progress = 0.56802255
 
 [node name="animation" type="AnimatedSprite2D" parent="."]

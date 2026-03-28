@@ -5,6 +5,7 @@ var move
 @onready var bubble = $CanvasLayer/Bubble
 @onready var ding = $ding
 @onready var timer = $CanvasLayer/Timer
+@onready var scream = $scream
 
 @onready var fadeColor = $CanvasLayer/color
 @onready var fadeAnimation = $CanvasLayer/animation
@@ -25,6 +26,7 @@ func _ready() -> void:
 	
 	cutscene.play("anim1")
 	await cutscene.animation_finished
+	$place.play()
 	
 	await bubble.talk("Head Hammy", "I drew a lovely piece of Charlie, in memory of him.")
 	await bubble.talk("Head Hammy", "Let's keep Charlie's family in our prayers.")
@@ -37,8 +39,22 @@ func _ready() -> void:
 	await bubble.talk("Head Hammy", "Just don't wake up last!")
 	
 	await bubble.talk("Head Hammy", "...Goodnight!")
+	
+	await wait(1.0)
+	$CanvasLayer/CG.show()
+	await wait(2.0)
+	
+	fadeColor.show()
 	fadeAnimation.play("fade")
-	get_tree().change_scene_to_file("res://code/house.tscn")
+	await fadeAnimation.animation_finished
+	
+	await wait(2.0)
+	
+	scream.play()
+	await wait(5.0)
+	
+	
+	get_tree().change_scene_to_file("res://code/horror.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,3 +65,6 @@ func box(name, message):
 	p.moving = false
 	await bubble.talk(name, message)
 	p.moving = true
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout

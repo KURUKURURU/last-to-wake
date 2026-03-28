@@ -1,0 +1,239 @@
+[gd_scene load_steps=26 format=4 uid="uid://b15bg5pjvr8d6"]
+
+[ext_resource type="Script" uid="uid://c3t21nyps0e52" path="res://code/horror.gd" id="1_h4v88"]
+[ext_resource type="Texture2D" uid="uid://c0v1e2gnbc7ew" path="res://images/carpet.png" id="2_cnvp6"]
+[ext_resource type="Texture2D" uid="uid://cdq61jhsunh8w" path="res://images/wall.png" id="3_26e4m"]
+[ext_resource type="Texture2D" uid="uid://lf4hob662nxc" path="res://images/empty.png" id="4_2hb5r"]
+[ext_resource type="Texture2D" uid="uid://dmk80bw4yb3it" path="res://images/painting.png" id="5_2jsbd"]
+[ext_resource type="PackedScene" uid="uid://bjki3umieuki2" path="res://code/random.tscn" id="6_0w72k"]
+[ext_resource type="PackedScene" uid="uid://camywts3qpitd" path="res://code/zoe.tscn" id="7_kc2ei"]
+[ext_resource type="PackedScene" uid="uid://cve4dek45uxmm" path="res://code/player.tscn" id="8_c1kns"]
+[ext_resource type="AudioStream" uid="uid://d3b6xbptnt5ao" path="res://sound/827251__boatlanman__dark-ambient-loop-180bpm.wav" id="9_26e4m"]
+[ext_resource type="AudioStream" uid="uid://taap60rd2rx2" path="res://sound/610827__paraplex__calm-synth-loop.wav" id="10_26e4m"]
+[ext_resource type="AudioStream" uid="uid://ctf6716smdfad" path="res://sound/829107__jamm__notification-sound-3-mysterious.mp3" id="10_qxi2a"]
+[ext_resource type="AudioStream" uid="uid://dbufjlgb6pmwi" path="res://sound/83235__mlestn1__fluffing-blanket.wav" id="11_2jsbd"]
+[ext_resource type="Texture2D" uid="uid://dhmefw1gkyeom" path="res://images/cg2.png" id="11_a3upt"]
+[ext_resource type="PackedScene" uid="uid://bpq0xkauhs64k" path="res://code/info_screen.tscn" id="12_2hb5r"]
+[ext_resource type="PackedScene" uid="uid://dc3lkdg6a7ckd" path="res://code/timer.tscn" id="12_b8owe"]
+[ext_resource type="PackedScene" uid="uid://4htk2khki77a" path="res://code/bubble.tscn" id="13_n4c4q"]
+[ext_resource type="Texture2D" uid="uid://qbvsmgwdewg2" path="res://images/vignette.png" id="14_cnvp6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7wo4"]
+texture = ExtResource("3_26e4m")
+texture_region_size = Vector2i(120, 125)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-59.013184, -61.065804, 61.57895, -62.605278, 60.552643, 64.14475, -60.552673, 64.14475)
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6lf6g"]
+texture = ExtResource("4_2hb5r")
+texture_region_size = Vector2i(120, 125)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-60, -62.5, 60, -62.5, 60, 62.5, -60, 62.5)
+
+[sub_resource type="TileSet" id="TileSet_ex6k3"]
+tile_size = Vector2i(120, 125)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_s7wo4")
+sources/1 = SubResource("TileSetAtlasSource_6lf6g")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnvp6"]
+radius = 86.09297
+
+[sub_resource type="Animation" id="Animation_wv4fj"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.18133499, 0.0777, 0.21, 0), Color(0.17922792, 0.07595559, 0.2070519, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("color:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7t4b3"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_4exmk"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.18039216, 0.078431375, 0.21176471, 1), Color(0.17912996, 0.0777, 0.21, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("color:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vaxf6"]
+_data = {
+&"RESET": SubResource("Animation_7t4b3"),
+&"fade": SubResource("Animation_wv4fj"),
+&"fadein": SubResource("Animation_4exmk")
+}
+
+[node name="horror" type="Node2D"]
+script = ExtResource("1_h4v88")
+
+[node name="floor" type="TextureRect" parent="."]
+modulate = Color(0.47647965, 0.48156786, 0.8915247, 1)
+self_modulate = Color(0.9116014, 0.9116014, 0.9116014, 1)
+offset_left = -513.0
+offset_top = 126.0
+offset_right = 1055.0
+offset_bottom = 3270.0
+texture = ExtResource("2_cnvp6")
+stretch_mode = 1
+
+[node name="detail" type="TileMapLayer" parent="."]
+modulate = Color(0.47647965, 0.48156786, 0.8915247, 1)
+position = Vector2(-14, -106)
+
+[node name="walls" type="TileMapLayer" parent="."]
+modulate = Color(0.47647965, 0.48156786, 0.8915247, 1)
+position = Vector2(-511, -131)
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAEAAAABAAEAAAAAAAAAAAABAAIAAAAAAAEAAAACAAEAAAAAAAAAAAACAAIAAAAAAAEAAAADAAEAAAAAAAAAAAADAAIAAAAAAAEAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAEAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAEAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAEAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAEAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAEAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAEAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAEAAAALAAEAAAAAAAAAAAALAAIAAAAAAAEAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAEAAAD//wYAAQAAAAAAAAD//wUAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAD//wIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAANAAEAAQAAAAAAAAANAAIAAQAAAAAAAAANAAMAAQAAAAAAAAANAAQAAQAAAAAAAAANAAUAAQAAAAAAAAANAAYAAQAAAAAAAAANAAcAAQAAAAAAAAANAAgAAQAAAAAAAAANAAsAAQAAAAAAAAANAAoAAQAAAAAAAAANAAkAAQAAAAAAAAD//wcAAQAAAAAAAAD//wgAAQAAAAAAAAD//wkAAQAAAAAAAAD//woAAQAAAAAAAAD//wsAAQAAAAAAAAD//wwAAQAAAAAAAAD//w0AAQAAAAAAAAD//w4AAQAAAAAAAAD//w8AAQAAAAAAAAD//xAAAQAAAAAAAAD//xEAAQAAAAAAAAD//xIAAQAAAAAAAAD//xMAAQAAAAAAAAD//xQAAQAAAAAAAAD//xUAAQAAAAAAAAD//xYAAQAAAAAAAAD//xcAAQAAAAAAAAD//xgAAQAAAAAAAAD//xkAAQAAAAAAAAD//xoAAQAAAAAAAAD//xsAAQAAAAAAAAAAABsAAQAAAAAAAAABABsAAQAAAAAAAAACABsAAQAAAAAAAAADABsAAQAAAAAAAAAEABsAAQAAAAAAAAAFABsAAQAAAAAAAAAGABsAAQAAAAAAAAAHABsAAQAAAAAAAAAIABsAAQAAAAAAAAAJABsAAQAAAAAAAAAKABsAAQAAAAAAAAALABsAAQAAAAAAAAAMABsAAQAAAAAAAAANABsAAQAAAAAAAAANAAwAAQAAAAAAAAANAA0AAQAAAAAAAAANAA4AAQAAAAAAAAANAA8AAQAAAAAAAAANABAAAQAAAAAAAAANABEAAQAAAAAAAAANABIAAQAAAAAAAAANABMAAQAAAAAAAAANABQAAQAAAAAAAAANABUAAQAAAAAAAAANABYAAQAAAAAAAAANABcAAQAAAAAAAAANABgAAQAAAAAAAAANABkAAQAAAAAAAAANABoAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_ex6k3")
+
+[node name="CharliePortrait" type="TextureRect" parent="."]
+modulate = Color(0.40847915, 0.40847915, 0.40847915, 1)
+offset_left = 212.0
+offset_top = 45.0
+offset_right = 355.0
+offset_bottom = 213.0
+texture = ExtResource("5_2jsbd")
+
+[node name="Area2D" type="Area2D" parent="CharliePortrait"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharliePortrait/Area2D"]
+position = Vector2(73, 164)
+shape = SubResource("CircleShape2D_cnvp6")
+
+[node name="ScaryHammy" parent="." instance=ExtResource("6_0w72k")]
+visible = false
+modulate = Color(0.3665946, 0.3665946, 0.36659458, 1)
+position = Vector2(500, 558)
+
+[node name="InterestingHammy" parent="." instance=ExtResource("6_0w72k")]
+visible = false
+modulate = Color(0.8058261, 0.26631942, 1, 1)
+position = Vector2(449, 424)
+
+[node name="HeadHammy" parent="." instance=ExtResource("6_0w72k")]
+modulate = Color(0.44132662, 0.61258835, 0.5795601, 1)
+position = Vector2(940, 331)
+
+[node name="Zoe" parent="." instance=ExtResource("7_kc2ei")]
+modulate = Color(1, 0.25, 0.25, 1)
+position = Vector2(-427, 3159)
+
+[node name="Player" parent="." instance=ExtResource("8_c1kns")]
+position = Vector2(139, 390)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-2, 2)
+limit_left = -510
+limit_top = 0
+limit_right = 1045
+limit_bottom = 3270
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_26e4m")
+pitch_scale = 0.77
+autoplay = true
+
+[node name="music2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_26e4m")
+volume_db = -25.243
+pitch_scale = 0.73
+autoplay = true
+
+[node name="blanket" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2jsbd")
+pitch_scale = 0.73
+autoplay = true
+
+[node name="ding" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_qxi2a")
+volume_db = -8.587
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InfoScreen" parent="CanvasLayer" instance=ExtResource("12_2hb5r")]
+
+[node name="CG" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_right = 650.0
+offset_bottom = 600.0
+texture = ExtResource("11_a3upt")
+
+[node name="color" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.18039216, 0.078431375, 0.21176471, 1)
+offset_right = 662.0
+offset_bottom = 616.0
+
+[node name="Timer" parent="CanvasLayer" instance=ExtResource("12_b8owe")]
+position = Vector2(236, 26)
+
+[node name="Bubble" parent="CanvasLayer" instance=ExtResource("13_n4c4q")]
+z_index = 3
+position = Vector2(-2, -4)
+
+[node name="animation" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_vaxf6")
+}
+
+[node name="lightDim" type="ColorRect" parent="CanvasLayer"]
+z_index = 3
+offset_left = -574.0
+offset_top = -159.0
+offset_right = 1167.0
+offset_bottom = 3361.0
+mouse_filter = 2
+color = Color(0.014357065, 0.0010283913, 0.0010283913, 0.6392157)
+
+[node name="vig" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.57996243, 0.071089685, 0.044306915, 0.72156864)
+offset_right = 650.0
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("14_cnvp6")
+
+[connection signal="hi" from="CanvasLayer/InfoScreen" to="." method="_on_info_screen_hi"]

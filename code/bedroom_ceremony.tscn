@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://3vkygl0ixsdy"]
+[gd_scene load_steps=27 format=4 uid="uid://3vkygl0ixsdy"]
 
 [ext_resource type="Script" uid="uid://3co6qbv2vf5m" path="res://code/bedroom_ceremony.gd" id="1_4exmk"]
 [ext_resource type="Texture2D" uid="uid://c0v1e2gnbc7ew" path="res://images/carpet.png" id="2_rhadl"]
@@ -11,7 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://ctf6716smdfad" path="res://sound/829107__jamm__notification-sound-3-mysterious.mp3" id="9_nu4dl"]
 [ext_resource type="AudioStream" uid="uid://bn47u4s6k7n30" path="res://sound/692914__smallclone__synthsound-3-sparkly.wav" id="9_rhadl"]
 [ext_resource type="PackedScene" uid="uid://dc3lkdg6a7ckd" path="res://code/timer.tscn" id="10_rmgal"]
+[ext_resource type="AudioStream" uid="uid://b4fnyjqby8kxc" path="res://sound/759458__akridiy__a-single-scream-of-a-young-male.wav" id="11_6dh4u"]
 [ext_resource type="PackedScene" uid="uid://4htk2khki77a" path="res://code/bubble.tscn" id="11_37ej2"]
+[ext_resource type="Texture2D" uid="uid://dhmefw1gkyeom" path="res://images/cg2.png" id="11_xnb6n"]
+[ext_resource type="AudioStream" uid="uid://cxiwbe3rmbg0u" path="res://sound/815629__designerschoice__gameboard-samsung-galaxy-smartphone-mcu_chess-piece-place-onto-board-single_nicholas-judy_tdc.wav" id="12_y6pdl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7wo4"]
 texture = ExtResource("3_xnb6n")
@@ -32,6 +35,97 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_s7wo4")
 sources/1 = SubResource("TileSetAtlasSource_6lf6g")
 
+[sub_resource type="Animation" id="Animation_7t4b3"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("color:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.18133499, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("color:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.0777, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("color:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.21, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("color:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("color:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.18039216, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("color:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.078431375, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("color:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.21176471, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("color:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_wv4fj"]
 resource_name = "fade"
 tracks/0/type = "value"
@@ -46,21 +140,50 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0.18133499, 0.0777, 0.21, 0), Color(0.17922792, 0.07595559, 0.2070519, 1)]
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("color:visible")
+tracks/1/path = NodePath("color:modulate:r")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.18039216, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
-
-[sub_resource type="Animation" id="Animation_7t4b3"]
-length = 0.001
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("color:modulate:g")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.078431375, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("color:modulate:b")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.21176471, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("color:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_4exmk"]
 resource_name = "fadein"
@@ -94,6 +217,43 @@ _data = {
 &"RESET": SubResource("Animation_7t4b3"),
 &"fade": SubResource("Animation_wv4fj"),
 &"fadein": SubResource("Animation_4exmk")
+}
+
+[sub_resource type="Animation" id="Animation_6dh4u"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadHammy:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(287, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HeadHammy:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(331, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharliePortrait:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xnb6n"]
@@ -132,43 +292,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_6dh4u"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HeadHammy:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(287, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HeadHammy:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(331, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharliePortrait:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_rhadl"]
@@ -267,13 +390,30 @@ autoplay = true
 position = Vector2(315, 316)
 stream = ExtResource("9_nu4dl")
 
+[node name="scream" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(315, 316)
+stream = ExtResource("11_6dh4u")
+
+[node name="place" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(315, 316)
+stream = ExtResource("12_y6pdl")
+volume_db = 11.107
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="color" type="ColorRect" parent="CanvasLayer"]
+[node name="CG" type="TextureRect" parent="CanvasLayer"]
 visible = false
+offset_right = 650.0
+offset_bottom = 600.0
+texture = ExtResource("11_xnb6n")
+
+[node name="color" type="ColorRect" parent="CanvasLayer"]
 modulate = Color(0.18039216, 0.078431375, 0.21176471, 1)
+z_index = 12
 offset_right = 662.0
 offset_bottom = 616.0
+mouse_filter = 2
+color = Color(0.18133499, 0.0777, 0.21, 1)
 
 [node name="Timer" parent="CanvasLayer" instance=ExtResource("10_rmgal")]
 position = Vector2(236, 26)

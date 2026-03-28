@@ -31,7 +31,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_interact(InterestingHammyIcon, InterestingHammy, pA, "Interesting Hammy", "Whaddup. What's your position on toes?")
 	_interact(ScaryHammyIcon, ScaryHammy, pA, "Scary Hammy", "I'm Scary Hammy. But I'm still lowkirkenuliy chill.")
-	_interact(HeadHammyIcon, HeadHammy, pA, "Head Hammy", "I own everything here, cuz I'm hosting the annual sleepover at my place. I also own you.")
+	_interact(HeadHammyIcon, HeadHammy, pA, "Head Hammy", "I own everything here cuz I'm hosting the annual sleepover at my place. I also own you.")
 	_interact(ZoeIcon, Zoe, pA, "Zoe, the silly", "burp.")
 	
 	
