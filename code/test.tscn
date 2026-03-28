@@ -1,10 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfhjxheeu16ht"]
+[gd_scene load_steps=7 format=3 uid="uid://cfhjxheeu16ht"]
 
+[ext_resource type="Script" uid="uid://vy53yc4qfxce" path="res://code/test.gd" id="1_mv0j7"]
 [ext_resource type="PackedScene" uid="uid://cve4dek45uxmm" path="res://code/player.tscn" id="1_v30mm"]
+[ext_resource type="AudioStream" uid="uid://ccetnrirjefgu" path="res://sound/left.mp3" id="3_t8dpl"]
+[ext_resource type="AudioStream" uid="uid://ck1ygd85g5ipp" path="res://sound/right.mp3" id="4_4mgjl"]
+[ext_resource type="AudioStream" uid="uid://12lak5m6iwsj" path="res://sound/up.mp3" id="5_8t6ru"]
+[ext_resource type="AudioStream" uid="uid://crk1rrpr5sh08" path="res://sound/down.mp3" id="6_2q0b4"]
 
 [node name="test" type="Node2D"]
+script = ExtResource("1_mv0j7")
 
 [node name="Player" parent="." instance=ExtResource("1_v30mm")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
+
+[node name="left" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-325, -3)
+stream = ExtResource("3_t8dpl")
+
+[node name="right" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(330, -3)
+stream = ExtResource("4_4mgjl")
+
+[node name="up" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(11, -308)
+stream = ExtResource("5_8t6ru")
+
+[node name="down" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(11, 296)
+stream = ExtResource("6_2q0b4")
