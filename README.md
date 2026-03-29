@@ -1,10 +1,13 @@
+# Snoozefest / Jackpot Project
 
-Hello! THis is my project for Snoozefest, and I heard from Reem I could double dip it into Jackpot so I went ahead and did it! 
+Hello! This is my project for Snoozefest, and I heard from Reem that I could also submit it to Jackpot, so I went ahead and did that.
 
-In this Godot game, you can interact with odd hamsters, learn the tragedy of Charlie, and run from some odd creature. 
+In this Godot game, you can interact with some odd hamsters, learn about the tragedy of Charlie, and run from some creature.
 
-I did this in under 24 hours, and to play you must use:
+I made this in under 24 hours, so it’s a bit rough, but that was part of the goal.
 
-- wasd for movement
-- e for interaction
-- click for dialogue
+## Controls
+
+- WASD for movement  
+- E for interaction  
+- Click for dialogue  
